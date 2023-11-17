@@ -1,0 +1,18 @@
+<!-- res/drawable/gradient.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:startColor="#FFFFFF"
+                android:endColor="#87E9A2"
+                android:angle="90"
+                />
+        </shape>
+    </item>
+    <!-- The Rest of Your Layout -->
+    <item android:top="10dp">  <!-- Adjust the top margin as needed -->
+        <shape>
+            <!-- This is an empty shape, which allows the gradient to extend downward -->
+        </shape>
+    </item>
+</layer-list>
