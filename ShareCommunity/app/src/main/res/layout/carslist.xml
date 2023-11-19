@@ -1,0 +1,96 @@
+<!-- car_item.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="horizontal"
+    android:background="@drawable/bordered_background"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="12dp"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="297dp"
+        android:layout_height="104dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Car Name Icon"
+                android:paddingRight="4dp"
+                />
+
+            <TextView
+                android:id="@+id/textCarName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Car Name"
+                android:textColor="#CBCBCB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Car Matricule Icon"
+                android:paddingRight="4dp"/>
+
+            <TextView
+                android:id="@+id/textCarMatricule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Car Matricule"
+                android:textColor="#CBCBCB"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Car Info Icon"
+                android:paddingRight="4dp"
+             />
+
+            <TextView
+                android:id="@+id/textCarInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Car Info"
+                android:textColor="#CBCBCB"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iconCar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/vehicle_icon"
+        android:contentDescription="Car Icon"/>
+</LinearLayout>
