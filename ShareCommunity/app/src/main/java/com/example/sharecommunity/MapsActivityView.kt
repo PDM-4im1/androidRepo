@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sharecommunity.cars.data.CarData
 import kotlin.math.min
 
 
@@ -35,6 +36,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.sharecommunity.databinding.ActivityMapsViewBinding
 import com.example.sharecommunity.drivers.adapter.DriverAdapter
 import com.example.sharecommunity.drivers.data.DriverData
+import com.example.sharecommunity.drivers.data.UserData
+import com.example.sharecommunity.drivers.services.DriverServices
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
@@ -43,6 +46,12 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.DirectionsApi
 import com.google.maps.GeoApiContext
 import com.google.maps.model.DirectionsResult
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.Locale
 
@@ -61,32 +70,72 @@ class MapsActivityView : AppCompatActivity(),
     private lateinit var showDriversBtn: Button
     private val DELAY_DURATION = 3000
     private val handler = Handler()
+    private val driverAdapter = DriverAdapter()
+
+    private val driverServices: DriverServices by lazy {
+        createRetrofit().create(DriverServices::class.java)
+    }
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val driverData = listOf(
-            DriverData("John", "Doe", "123456789", "Car Model: ABC123"),
-            DriverData("Jane", "Smith", "987654321", "Car Model: XYZ789"),
-            DriverData("abouhmid","bezzine","55200800","BM X"),
-        )
         binding = ActivityMapsViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tvDuration = findViewById(R.id.tvDuration)
-         showDriversBtn = findViewById(R.id.showdrivers_btn)
+        showDriversBtn = findViewById(R.id.showdrivers_btn)
         showDriversBtn.setOnClickListener {
-            setContentView(R.layout.activity_driver_list)
-            val recyclerView: RecyclerView = findViewById(R.id.recyclerViewDrivers)
-            val adapter = DriverAdapter(driverData) // Assuming driverData is defined
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = adapter
+            fetchDriverData()
         }
         showDriversBtn.isEnabled = false
 
-
         initMap()
         initUI()
+    }
+    private fun fetchDriverData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val driversResponse = driverServices.getDrivers().execute()
+                val carsResponse = driverServices.getCars().execute()
+                val usersResponse = driverServices.getUsers().execute()
+
+                withContext(Dispatchers.Main) {
+                    if (driversResponse.isSuccessful && carsResponse.isSuccessful && usersResponse.isSuccessful) {
+                        val drivers = driversResponse.body() ?: emptyList()
+                        val cars = carsResponse.body() ?: emptyList()
+                        val users = usersResponse.body() ?: emptyList()
+
+                        driverAdapter.setData(drivers, users, cars)
+
+                        updateRecyclerView()
+
+                        showDriversBtn.isEnabled = true
+                    } else {
+                        // Handle unsuccessful responses
+                        Toast.makeText(this@MapsActivityView, "Failed to fetch data", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    // Handle exceptions
+                    Toast.makeText(this@MapsActivityView, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun updateRecyclerView() {
+        setContentView(R.layout.activity_driver_list)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewDrivers)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = driverAdapter
+    }
+
+    private fun createRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:9090/") // Replace with your actual backend URL
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
     private fun initMap() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment

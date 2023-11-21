@@ -26,9 +26,9 @@ class CarsAdapter(private val cars: List<CarData>) : RecyclerView.Adapter<CarsAd
 
     class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(car: CarData) {
-            itemView.findViewById<TextView>(R.id.textCarName).text = car.name
+            itemView.findViewById<TextView>(R.id.textCarName).text = car.marque
             itemView.findViewById<TextView>(R.id.textCarMatricule).text = car.matricule
-            itemView.findViewById<TextView>(R.id.textCarInfo).text = car.info
+            itemView.findViewById<TextView>(R.id.textCarInfo).text = car.type
         }
     }
 }
