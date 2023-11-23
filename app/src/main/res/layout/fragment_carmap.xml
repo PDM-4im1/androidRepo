@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CarmapFragment">
+
+    <!-- MapView -->
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="228dp"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/searchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnPosition"
+                android:scaleType="fitCenter"
+                android:layout_width="33dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_placeholder"
+                android:background="@android:color/transparent"/>
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="your location" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="33dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_search" />
+
+            <TextView
+                android:id="@+id/locationEditText"
+                android:layout_width="235dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:text="  Where to go ?" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/hospitalBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_hospital"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/policeStationBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_police"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/pharmacyBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_pharmacy"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/doctorBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_doctor"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="436dp"
+        android:layout_below="@+id/bottomLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-27dp"
+        android:layout_marginEnd="0dp"
+        android:layout_weight="1"
+        tools:context=".MapsActivity" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="39dp"
+        android:textColor="#EF0B0B"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnRide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="27dp"
+        android:layout_toEndOf="@+id/tvPrice"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:text="Ride" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="41dp"
+        android:layout_toEndOf="@+id/tvDuration" />
+    <!-- Additional Views -->
+
+</RelativeLayout>

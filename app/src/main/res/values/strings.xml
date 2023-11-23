@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">ShareCommunity</string>
+    <string name="map_description">Google Map View</string>
+    <string name="share_commute">Share Commute</string>
+    <string name="API_MAPS_KEY">AIzaSyCmXUO6nmL7sbV1Z6UEysVERFQUtQj6i74</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
