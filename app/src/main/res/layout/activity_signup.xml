@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     >
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +14,18 @@
         android:orientation="vertical"
         android:padding="16dp"
         >
+
+        <Button
+            android:id="@+id/btnReturn"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -174,6 +185,48 @@
                     android:inputType="textEmailAddress"
                     android:minHeight="48dp" />
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Role"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <CheckBox
+                    android:id="@+id/checkBoxDriver"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Driver"
+                    android:buttonTint="@color/green" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxClient"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:text="Client"
+                    android:buttonTint="@color/green" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxDeliveryMan"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Man"
+                    android:buttonTint="@color/green" />
+            </LinearLayout>
 
 
 
