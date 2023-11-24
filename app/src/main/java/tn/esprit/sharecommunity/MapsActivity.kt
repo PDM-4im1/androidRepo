@@ -19,6 +19,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -33,8 +35,12 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.DirectionsApi
 import com.google.maps.GeoApiContext
 import com.google.maps.model.DirectionsResult
+import org.json.JSONObject
 import tn.esprit.sharecommunity.databinding.ActivityMapsBinding
+import tn.esprit.sharecommunity.drivers.adapter.EmDriverAdapter
 import java.io.IOException
+import java.net.URL
+import java.net.URLEncoder
 import java.util.Locale
 import kotlin.math.min
 
@@ -108,7 +114,37 @@ ActivityCompat.OnRequestPermissionsResultCallback {
             }
         }
 
+    private fun getLocationFromAddress(address: String): LatLng? {
+        val apiKey = "AIzaSyCmXUO6nmL7sbV1Z6UEysVERFQUtQj6i74"
+        val geocodingUrl =
+            "https://maps.googleapis.com/maps/api/geocode/json?address=${URLEncoder.encode(address, "UTF-8")}&key=$apiKey"
 
+        try {
+            val response = URL(geocodingUrl).readText()
+            val jsonObj = JSONObject(response)
+
+            if (jsonObj.getString("status") == "OK") {
+                val results = jsonObj.getJSONArray("results")
+                if (results.length() > 0) {
+                    val location = results.getJSONObject(0).getJSONObject("geometry").getJSONObject("location")
+                    val lat = location.getDouble("lat")
+                    val lng = location.getDouble("lng")
+                    return LatLng(lat, lng)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+    fun updateRecyclerView(context : Context, driverAdapter : EmDriverAdapter) {
+        setContentView(R.layout.fragment_emgcovoiturage)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewEMDrivers)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = driverAdapter
+    }
         fun handleMyLocationClick(context: Context, editText: EditText) {
             enableMyLocation(context,mMap)
 
@@ -239,22 +275,7 @@ ActivityCompat.OnRequestPermissionsResultCallback {
 
 
 
-        fun getLocationFromAddress(address: String): LatLng? {
-            // Use Geocoder to convert address to LatLng
-            val geocoder = Geocoder(this, Locale.getDefault())
-            val addresses: List<Address>?
-            return try {
-                addresses = geocoder.getFromLocationName(address, 1)
-                if (!addresses.isNullOrEmpty()) {
-                    LatLng(addresses[0].latitude, addresses[0].longitude)
-                } else {
-                    null
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
-                null
-            }
-        }
+
         override fun onMapReady(googleMap: GoogleMap) {
             mMap = googleMap
 

@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -42,17 +43,26 @@ import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.maps.DirectionsApi
 import com.google.maps.GeoApiContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import tn.esprit.sharecommunity.cars.data.CarData
 import tn.esprit.sharecommunity.databinding.FragmentCarmapBinding
 import tn.esprit.sharecommunity.databinding.FragmentDirectionBinding
+import tn.esprit.sharecommunity.drivers.adapter.EmDriverAdapter
+import tn.esprit.sharecommunity.drivers.data.DriverData
+import tn.esprit.sharecommunity.drivers.data.UserData
 import java.io.IOException
 import java.util.Locale
-
 
 class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener,
     ActivityCompat.OnRequestPermissionsResultCallback {
      val MapsActivity = MapsActivity()
-
+    val EmgActivity = EmgCovoiturageActivity()
     private lateinit var mMap: GoogleMap
     private var sourceLocation: LatLng? = null
     private var destinationLocation: LatLng? = null
@@ -61,6 +71,33 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
     private val PLACE_PICKER_REQUEST = 1
     private var currentPolyline: Polyline? = null
     private val markers: MutableList<Marker> = mutableListOf()
+    private val driverAdapter = EmDriverAdapter()
+
+    private val staticDrivers = listOf(
+        DriverData(id_cond = 5,id_moyen_transpor = 1, id_user = 1, pointDepart="A",pointArrivee="B", localisation = "YourLocation"),
+        DriverData(id_cond = 6,id_moyen_transpor = 1, id_user = 2, pointDepart="A",pointArrivee="B", localisation = "YourLocation"),
+        DriverData(id_cond = 7,id_moyen_transpor = 1, id_user = 3, pointDepart="A",pointArrivee="B", localisation = "YourLocation"),
+
+        )
+
+    private val staticUsers = listOf(
+        UserData( id_user = 1, email="aaa.vvv@ggg.cc" ,password = "aaaaaa",Phone_number = 22555999 ,role ="Driver",name="mizo", first_name = "John",  age = 22),
+        UserData( id_user = 2, email="zzzz.gggg@vvv.cc" ,password = "sssss",Phone_number = 22478596 ,role ="Driver", first_name = "Dai", name = "Doe", age = 25),
+        UserData( id_user = 3, email="hhh.fff@nn.cc" ,password = "pppp",Phone_number = 20147852 ,role ="Driver",first_name = "dido", name = "mansour", age = 24),
+
+        )
+
+    private val staticCars = listOf(
+        CarData(id_moyen_transpor = 1, marque = "Toyota", type = "vehicule",matricule = "123TN7895",image = "aaaa",trajet = "15746",idConducteur = 5
+        ),
+    )
+
+   // private val DriversBtn = binding.btnRide
+
+   /* private val driverServices:
+            EmDriverService by lazy {
+        createRetrofit().create(EmDriverService::class.java)
+    }*/
 
 
     private lateinit var placesClient: PlacesClient
@@ -104,7 +141,7 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         }
       /*  locationEditText.setOnClickListener {
             requireActivity().supportFragmentManager.commit {
-                replace(R.id.fragment_container, DirectionFragment())
+                replace(R.id.fragment_container, EmgCovoiturageFragment())
                 addToBackStack(null)
             }
         }*/
@@ -113,6 +150,8 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                 replace(R.id.fragment_container, EmgCovoiturageFragment())
                 addToBackStack(null)
             }
+            EmgActivity.fetchDriverData()
+
         }
         locationEditText.setOnClickListener {
             openAutocompleteActivity()
@@ -332,14 +371,14 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
     }
 
-    private fun updateMap() {
+   /* private fun updateMap() {
         sourceLocation = MapsActivity.getLocationFromAddress(binding.searchEditText.text.toString())
         destinationLocation = MapsActivity.getLocationFromAddress(Directionbinding.DestinationEditText.text.toString())
 
         if (sourceLocation != null && destinationLocation != null) {
             MapsActivity.getDirections()
         }
-    }
+    }*/
     @SuppressLint("PotentialBehaviorOverride")
     private fun showHospitalsInCountry() {
         mMap.clear()
@@ -361,7 +400,7 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setTypeFilter(TypeFilter.ESTABLISHMENT)
                     .setSessionToken(AutocompleteSessionToken.newInstance())
-                    .setQuery("hospital $region") // Search query for hospitals with country and region
+                    .setQuery("hospital $country") // Search query for hospitals with country and region
                     .build()
 
                 // Perform the Autocomplete request
@@ -448,7 +487,7 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setTypeFilter(TypeFilter.ESTABLISHMENT)
                     .setSessionToken(AutocompleteSessionToken.newInstance())
-                    .setQuery("police station $region") // Search query for hospitals with country and region
+                    .setQuery("police station $country") // Search query for hospitals with country and region
                     .build()
 
                 // Perform the Autocomplete request
@@ -534,7 +573,7 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setTypeFilter(TypeFilter.ESTABLISHMENT)
                     .setSessionToken(AutocompleteSessionToken.newInstance())
-                    .setQuery("pharmacy $region") // Search query for hospitals with country and region
+                    .setQuery("pharmacy $country") // Search query for hospitals with country and region
                     .build()
 
                 // Perform the Autocomplete request
@@ -723,6 +762,61 @@ class CarmapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         }
 
     }
+    private fun fetchDriverData() {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            try {
+                //val driversResponse = driverServices.getDrivers().execute()
+                //val carsResponse = driverServices.getCars().execute()
+                //val usersResponse = driverServices.getUsers().execute()
+                //val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                //val DriversBtn = binding.btnRide
+                //val addresses: List<Address>?
+                withContext(Dispatchers.Main) {
+                    driverAdapter.setData(staticDrivers, staticUsers, staticCars, "YourLocation")
+                   Log.d("data","$driverAdapter,$staticDrivers")
+
+                        EmgActivity.updateRecyclerView(driverAdapter)
+
+
+                  /*  if (driversResponse.isSuccessful && carsResponse.isSuccessful && usersResponse.isSuccessful) {
+                        val drivers = driversResponse.body() ?: emptyList()
+                        val cars = carsResponse.body() ?: emptyList()
+                        val users = usersResponse.body() ?: emptyList()
+                        addresses = geocoder.getFromLocation(sourceLocation!!.latitude, sourceLocation!!.longitude, 1)
+                        if (!addresses.isNullOrEmpty()) {
+                            val region = addresses[0].adminArea
+                            driverAdapter.setData(staticDrivers, staticUsers, staticCars, "YourLocation")
+                        }
+
+
+                            //DriversBtn.isEnabled = true
+                    } else {
+                        // Handle unsuccessful responses
+                        Toast.makeText(requireContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show()
+                    }*/
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    // Handle exceptions
+                    if (isAdded) {
+                        Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                    Log.d("Error : ","${e.message}")
+                }
+            }
+        }
+    }
+
+
+    private fun createRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:9090/") // Replace with your actual backend URL
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+
 
     override fun onMyLocationButtonClick(): Boolean {
         TODO("Not yet implemented")

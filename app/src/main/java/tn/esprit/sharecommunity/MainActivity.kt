@@ -25,13 +25,25 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnBack.setOnClickListener {
-            //changeFragment(BackFragment(), "")
-        }
+            val fragmentManager = supportFragmentManager
+
+            // Check if there are fragments in the back stack
+            if (fragmentManager.backStackEntryCount > 0) {
+                // Pop the top state off the back stack, causing the previous fragment to be shown
+                fragmentManager.popBackStack()
+            } else {
+                 finish()
+            }        }
 
         binding.btnCancel.setOnClickListener {
-            //changeFragment(HomeFragment(), "")
+            changeFragment(EmergencyFragment(), "OptionalBackStackTagForHomeFragment")
         }
-
+        fun changeFragment(fragment: Fragment, backStackTag: String) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(backStackTag)
+                .commit()
+        }
 
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, EmergencyFragment()).commit()

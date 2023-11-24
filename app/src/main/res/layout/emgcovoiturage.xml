@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="12dp"
+    android:layout_width="373dp"
+    android:layout_height="220dp"
+
+        android:background="@drawable/background_with_shadow"
+        android:layout_weight="1">
+
+    <ImageView
+        android:id="@+id/imageAvatar"
+        android:layout_width="55dp"
+        android:layout_height="58dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="302dp"
+        android:layout_height="199dp"
+        android:layout_gravity="right"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="253dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Vehicle Icon"
+                android:paddingRight="4dp"
+                android:src="@drawable/name_icon" />
+
+            <TextView
+                android:id="@+id/nameLabel"
+                android:layout_width="257dp"
+                android:layout_height="32dp"
+                android:layout_gravity="right"
+                android:inputType="text"
+                android:text="chauffeur n" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="277dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Vehicle Icon"
+                android:paddingRight="4dp"
+                android:src="@drawable/phone_icon" />
+
+            <TextView
+                android:id="@+id/phoneLabel"
+                android:layout_width="276dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:inputType="text"
+                android:text="22 333 555" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Vehicle Icon"
+                android:paddingRight="4dp"
+                android:src="@drawable/vehicle_icon" />
+
+            <TextView
+                android:id="@+id/carLabel"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:inputType="text"
+                android:text="carhabty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Vehicle Icon"
+                android:paddingRight="4dp"
+                android:src="@drawable/vehicle_icon" />
+
+            <TextView
+                android:id="@+id/priceLabel"
+                android:layout_width="119dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:text="7.500 DT" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirmBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_gravity="right"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/green"
+            android:text="Confirm"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
+
