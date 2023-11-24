@@ -28,7 +28,10 @@ class ReceiverDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val colisData = intent.getStringExtra("description")?.let {
+        
+
+        binding.button.setOnClickListener {
+            val colisData = intent.getStringExtra("description")?.let {
             Colis(
                 description = it,
                 width = intent.getIntExtra("width", 0),
@@ -42,8 +45,6 @@ class ReceiverDetailActivity : AppCompatActivity() {
 
             )
         }
-
-        binding.button.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val result = colisData?.let { it1 -> colisApi.createColis(it1) }
