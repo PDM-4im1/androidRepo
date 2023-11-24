@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\row.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\row.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\fragment_profile.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\fragment_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\fragment_publish.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\fragment_publish.xml"
+    },
+    {
+        "merged": "com.example.bloggerapp-mergeDebugResources-47:/layout/fragment_publish.xml",
+        "source": "com.example.bloggerapp-main-50:/layout/fragment_publish.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\tool_bar.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\tool_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-mergeDebugResources-47:\\layout\\update_dialog.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.0\\com.example.bloggerapp-main-50:\\layout\\update_dialog.xml"
+    }
+]

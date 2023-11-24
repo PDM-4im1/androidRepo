@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/publishFragment"
+        android:name="com.example.bloggerapp.fragment.Publish"
+        android:label="Publish Fragment"
+        tools:layout="@layout/fragment_publish">
+
+        <!-- Define an action to navigate to the HomeFragment -->
+        <action
+            android:id="@+id/action_publishFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bloggerapp.fragment.Home"
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_home">
+
+        <!-- Any other configurations for HomeFragment can be added here -->
+
+    </fragment>
+
+</navigation>

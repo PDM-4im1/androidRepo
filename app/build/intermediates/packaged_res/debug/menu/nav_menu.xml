@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/infoMenu"
+            android:icon="@drawable/ic_info"
+            android:title="@string/info"
+            app:showAsAction="ifRoom" />
+        <item
+            android:icon="@drawable/home"
+            android:id="@+id/nav_home"
+            android:title="Home" />
+        <item
+            android:icon="@drawable/publish"
+            android:id="@+id/nav_publish"
+            android:title="Publish Blog" />
+        <item
+            android:icon="@drawable/profile"
+            android:id="@+id/nav_profile"
+            android:title="Profile" />
+    </group>
+</menu>
