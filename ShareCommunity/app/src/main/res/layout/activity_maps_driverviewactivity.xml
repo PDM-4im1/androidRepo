@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/sourceLabelDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Source"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/etSourcedriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Source Location"
+        android:background="@drawable/bordered_background"
+        android:layout_below="@+id/sourceLabelDriver"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        android:drawableRight="@drawable/ic_my_location" />
+
+    <TextView
+        android:id="@+id/destinationLabeldriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Destination"
+        android:layout_below="@+id/etSourcedriver"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/etDestinationdriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordered_background"
+
+        android:hint="Enter Destination Location"
+        android:layout_below="@+id/destinationLabeldriver"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="545dp"
+        android:layout_below="@+id/etDestinationdriver"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/mapdriverFragment"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MapsDriverviewactivity" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="116dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textColor="#EF0B0B"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnConfirmRoute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="16dp"
+                android:text="Confirm Your Route"
+                android:background="@drawable/rounded_button_background"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

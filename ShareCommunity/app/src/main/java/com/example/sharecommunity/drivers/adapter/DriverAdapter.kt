@@ -10,9 +10,6 @@ import com.example.sharecommunity.R
 import com.example.sharecommunity.cars.data.CarData
 import com.example.sharecommunity.drivers.data.DriverData
 import com.example.sharecommunity.drivers.data.UserData
-import com.example.sharecommunity.drivers.data.UserRole
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 
 class DriverAdapter : RecyclerView.Adapter<DriverAdapter.DriverViewHolder>() {
 
@@ -48,7 +45,7 @@ class DriverAdapter : RecyclerView.Adapter<DriverAdapter.DriverViewHolder>() {
         if (userDataList.isNotEmpty() && carDataList.isNotEmpty()) {
             val userData = userDataList[0]
             val carData = carDataList[0]
-            holder.bind(driver, userData, carData)
+            holder. bind(driver, userData, carData)
         }
     }
 

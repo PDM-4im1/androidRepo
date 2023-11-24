@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".MapsActivityView">
+    tools:context=".MapsClientActivityView">
 
     <TextView
         android:id="@+id/tvLocationLabel"
@@ -17,6 +17,8 @@
         android:id="@+id/etSource"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bordered_background"
+
         android:hint="Enter Source Location"
         android:layout_below="@+id/tvLocationLabel"
         android:padding="16dp"
@@ -36,6 +38,8 @@
         android:id="@+id/etDestination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bordered_background"
+
         android:hint="Enter Destination Location"
         android:layout_below="@+id/tvDestinationLabel"
         android:padding="16dp"/>
@@ -66,7 +70,7 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".MapsActivityView" />
+                tools:context=".MapsClientActivityView" />
 
             <TextView
                 android:id="@+id/tvDuration"
