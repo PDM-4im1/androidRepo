@@ -35,87 +35,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/tiDescription"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:hint="What is in the package ?"
-        android:backgroundTint="#079a4b"
-        android:outlineAmbientShadowColor="#079a4b"
-        android:layout_margin="20dp"
+        android:hint="Description"
+        android:textColorHint="#CBCBCB"
+        android:background="@drawable/bordered_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:background="@drawable/bordered_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:shadowColor="#079a4b"
-             />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiWidthLayout"
+    <EditText
+        android:id="@+id/tiHeight"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:hint="Width of package "
-        android:backgroundTint="#079a4b"
-        android:outlineAmbientShadowColor="#079a4b"
-        android:layout_margin="20dp"
+        android:hint="Height"
+        android:textColorHint="#CBCBCB"
+        android:background="@drawable/bordered_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiDescription">
+        app:layout_constraintTop_toBottomOf="@+id/tiDescription"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:background="@drawable/bordered_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:shadowColor="#079a4b"
-             />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiHeightLayout"
+
+    <EditText
+        android:id="@+id/tiWeight"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:hint="Height of package "
-        android:backgroundTint="#079a4b"
-        android:outlineAmbientShadowColor="#079a4b"
-        android:layout_margin="20dp"
+        android:hint="Weight"
+        android:textColorHint="#CBCBCB"
+        android:background="@drawable/bordered_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiWidthLayout">
+        app:layout_constraintTop_toBottomOf="@+id/tiHeight"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:background="@drawable/bordered_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:shadowColor="#079a4b"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiWeightLayout"
+    <EditText
+        android:id="@+id/tiWidth"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:hint="Weight of package "
-        android:layout_margin="20dp"
+        android:hint="Width"
+        android:textColorHint="#CBCBCB"
+        android:background="@drawable/bordered_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiHeightLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:background="@drawable/bordered_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-
-             />
-    </com.google.android.material.textfield.TextInputLayout>
-
+        app:layout_constraintTop_toBottomOf="@+id/tiWeight"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"/>
 
 
 

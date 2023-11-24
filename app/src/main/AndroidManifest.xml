@@ -13,11 +13,17 @@
         android:theme="@style/Theme.PDM_Draft"
         tools:targetApi="31">
         <activity
+            android:name=".DemandList"
+            android:exported="false" />
+        <activity
+            android:name=".Delivery"
+            android:exported="false" />
+        <activity
             android:name=".ReceiverDetailActivity"
             android:exported="false" />
         <activity
 
-            android:name=".Map"
+            android:name=".PackageDetailsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +32,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PackageDetailsActivity"
+            android:name=".Map"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/my_api_key" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
