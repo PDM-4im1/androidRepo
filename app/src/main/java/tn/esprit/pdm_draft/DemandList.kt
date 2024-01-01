@@ -17,7 +17,7 @@ import tn.esprit.pdm_draft.databinding.ActivityDemandListBinding
 import tn.esprit.pdm_draft.model.Colis
 import kotlin.math.log
 
-class DemandList : AppCompatActivity() {
+class DemandList : AppCompatActivity(), DemandAdapter.OnAssignClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var demandAdapter: DemandAdapter
     private lateinit var binding: ActivityDemandListBinding
@@ -32,12 +32,19 @@ class DemandList : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerViewDemand)
         demandAdapter = DemandAdapter()
+        demandAdapter.setOnAssignClickListener(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = demandAdapter
 
         fetchDataAndUpdateAdapter()
 
 
+
+
+    }
+    override fun onAssignClick(colisId: String) {
+        // Refresh the view or perform any other actions
+        fetchDataAndUpdateAdapter()
     }
     private fun fetchDataAndUpdateAdapter() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -45,10 +52,12 @@ class DemandList : AppCompatActivity() {
                 val result = colisApi.findAll().execute()
                 withContext(Dispatchers.Main) {
                     if(result.isSuccessful){
+
                         val colis = result.body() ?: emptyList()
                         Log.e(colis.toString()," ")
                         demandAdapter.setData(colis)
                         updateRecyclerView()
+
 
                     }
                 }
@@ -63,6 +72,8 @@ class DemandList : AppCompatActivity() {
 
         }
     }
+
+
     private fun updateRecyclerView() {
         setContentView(R.layout.activity_demand_list)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerViewDemand)

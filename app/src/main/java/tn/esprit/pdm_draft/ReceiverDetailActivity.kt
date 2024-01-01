@@ -18,6 +18,7 @@ class ReceiverDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityReceiverDetailBinding
     private val colisApi: ColisApi by lazy {
         RetrofitHelper.getInstance().create(ColisApi::class.java)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,37 +29,43 @@ class ReceiverDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        
+
 
         binding.button.setOnClickListener {
             val colisData = intent.getStringExtra("description")?.let {
-            Colis(
-                description = it,
-                width = intent.getIntExtra("width", 0),
-                height = intent.getIntExtra("height", 0),
-                weight = intent.getIntExtra("weight", 0),
-                destination = binding.tiDestination.text.toString() ,
-                adresse = binding.tiAdress.text.toString(),
-                receiverName = binding.tiReceiverName.text.toString(),
-                receiverPhone = binding.tiReceiverPhone.text.toString()
+                Colis(
+                    description = it,
+                    width = intent.getIntExtra("width", 0),
+                    height = intent.getIntExtra("height", 0),
+                    weight = intent.getIntExtra("weight", 0),
+                    destination = binding.tiDestination.text.toString() ,
+                    adresse = binding.tiAdress.text.toString(),
+                    receiverName = binding.tiReceiverName.text.toString(),
+                    receiverPhone = binding.tiReceiverPhone.text.toString(),
+                    id="",
+                    etat = ""
 
 
-            )
-        }
+
+                )
+            }
+            Log.e("Lotfi", colisData.toString());
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val result = colisData?.let { it1 -> colisApi.createColis(it1) }
+                    Log.e("gggg","ppppp");
 
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         // Handle exceptions
+
                         Log.e(this@ReceiverDetailActivity.toString(), "Error: ${e.message}",)
                     }
 
                 }
             }
 
-            startActivity(Intent(this, Map::class.java))
+            startActivity(Intent(this, DemandList::class.java))
         }
     }
 }

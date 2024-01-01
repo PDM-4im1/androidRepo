@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="Client Position"
                     android:textColor="#CBCBCB"
-                    android:textSize="18sp"
+                    android:textSize="10sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:text="Contact Phone"
                     android:textColor="#CBCBCB"
-                    android:textSize="16sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,20 +65,24 @@
                     android:layout_height="wrap_content"
                     android:text="Destination"
                     android:textColor="#CBCBCB"
-                    android:textSize="16sp" />
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:id="@+id/id_assign"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="end"
-                >
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="14dp"
+                    android:layout_height="20dp"
                     android:clickable="true"
                     android:contentDescription="Name Icon"
                     android:src="@drawable/twotone_add_task_24"
